@@ -4,12 +4,13 @@
         출력: [1, 2, 3, 4, 5, 6, 7]
     */
 
+    $end_val = 12;
     print "[";
-    for($n=1; $n<8; $n++)
+    for($n=1; $n<=$end_val; $n++)
     {
         print "$n";
 
-        if($n==7)
+        if($n==$end_val)
         {
             print"";
         }
