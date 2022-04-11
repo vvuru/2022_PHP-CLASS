@@ -1,24 +1,24 @@
-<?php
-    $star = rand(1,10);
-
+<?php    
     /*
-    만약에 star값이 2면
-
+    만약에 start값이 2
     **
     **
 
-    이렇게
-
+    만약에 start값이 4
+    ****
+    ****
+    ****
+    ****
     */
 
-    print "$star : <br>";
-
-    for($a=0; $a<$star; $a++)
-    {
+    $star = rand(2, 10);
+    print $star . "<br>";
+    
+    for($z=0; $z<$star; $z++)     {
+        for($i=0; $i<$star; $i++)
+        {
+            print "*";
+        }
         print "<br>";
-       for($b=0; $b<$star; $b++)
-       {
-        print "*";
-       }
-    }
+    }    
 ?>

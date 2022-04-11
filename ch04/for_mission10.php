@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table { border-collapse: collapse;}
-        table, td { border: 1px solid #000;}
+        table { border-collapse: collapse; }
+        table, td { border: 1px solid #000; }
     </style>
 </head>
 <body>
     <table>
     <?php
-        $val = rand(3,10);
+        $val = rand(3, 10);
         print "val : $val <br>";
         $num = 1;
         for($i=0; $i<$val; $i++)
         {
             print "<tr>";
-            for($z=0; $z<$val; $z++)
+            for($z=1; $z<=$val; $z++)
             {
+                // print "<td>" . ($i * $val + $z) . "</td>";
                 print "<td>" . $num++ . "</td>";
             }
             print "</tr>";
         }
-        
-    ?>
-    </table>
+    ?>  
+    </table>  
 </body>
 </html>

@@ -1,10 +1,10 @@
 <?php
-    if(0)
+    if(0) 
     {
         print "안녕하세요";
-    }
-    else
+    }  
+    else 
     {
-        print "마라탕";
+        print "안녕히 가세요.";
     }
 ?>

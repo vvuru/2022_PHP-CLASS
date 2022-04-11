@@ -3,21 +3,20 @@
         지금까지 배운 것 모두 활용하여
         출력: [1, 2, 3, 4, 5, 6, 7]
     */
-
     $end_val = 12;
-    print "[";
-    for($n=1; $n<=$end_val; $n++)
+    echo "[";
+    for($i=1; $i<$end_val; $i++)
     {
-        print "$n";
-
-        if($n==$end_val)
-        {
-            print"";
-        }
-        else
-        {
-            print", ";
-        }
+        print $i;
+        if($i < $end_val-1) { print ", "; }
     }
-    print "]";
+    echo "]";
+    echo "<br>";
+    echo "[";
+    for($i=1; $i<$end_val; $i++)
+    {
+        if($i > 1) { print ", "; }
+        print $i;
+    }
+    echo "]";
 ?>

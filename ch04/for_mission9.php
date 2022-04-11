@@ -1,23 +1,26 @@
 <?php
-    $star = rand(3,10);
-
     /*
     만약에 star값이 3이면
     *
     **
     ***
 
+    만약에 star값이 6
+    *
+    **
+    ***
+    ****
+    *****
+    ******
     */
-
-   
-        for($a=1; $a<$star; $a++)
+    $star = rand(3, 10);
+    print "star : $star <br>";
+    for($i=1; $i<=$star; $i++)
+    {
+        for($z=1; $z<=$i; $z++)
         {
-            for($c=1; $c<$star; $c++)
-            {
-                print "*";
-            }
-            print " <br>"
+            print "*";
         }
-        
-    
+        print "<br>";
+    }
 ?>

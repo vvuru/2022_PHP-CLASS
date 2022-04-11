@@ -14,8 +14,6 @@
     $result = $n1 / $n2;
     print "$n1 / $n2 = $result <br>";
 
-    $result = $n1 % $n2; // modulo
+    $result = $n1 % $n2; //modulo
     print "$n1 % $n2 = $result <br>";
-
-
 ?>
