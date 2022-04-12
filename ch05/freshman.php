@@ -23,6 +23,7 @@
     print $freshman["Frank"] . "<br>";
 
     $freshman["0"] = "안녕";
+    $freshman[0] = "Hello";
     print "<br><br>";
     print_r($freshman);
 
