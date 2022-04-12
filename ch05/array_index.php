@@ -5,7 +5,8 @@
     print "<br>";
     print "count : " . count($numbers) . "<br>";
 
-    $numbers["2"] = 30;
+    $numbers["2"] = 30; 
+    print "count : " . count($numbers) . "<br>";
 
     for($i=0; $i<count($numbers); $i++)
     {
