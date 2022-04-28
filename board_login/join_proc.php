@@ -13,7 +13,7 @@
         "nm"=>$nm,
         "gender"=>$gender
     ];
-    $result=user_join($param);
+    $result=ins_user($param);
 
     echo "uid: ".$uid."<br>";
     echo "upw: ".$upw."<br>";

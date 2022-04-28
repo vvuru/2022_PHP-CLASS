@@ -1,0 +1,87 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+body {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    box-sizing: border-box;
+    margin-top: 200px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main .main-logo a {
+    text-decoration: none;
+    font-size: 3rem;
+    width: 300px;
+    padding: 10px 50px;
+    color: #3fc754;
+    font-weight: bold;
+}
+.main .main-login {
+    border: 1px solid rgb(187, 187, 187);
+    width: 60%;
+    border-radius: 3px;
+    padding: 20px 20px;
+}
+.main .main-login .main-login__link a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+}
+.main .main-login .main-login__link a i {
+    color: #3fc754;
+    margin-right: 5px;
+}
+.main .main-login .main-login__link a h3 {
+    color: #000;
+}
+.main .main-login .main-login__box form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main .main-login .main-login__box .login-input {
+    box-sizing: border-box;
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 3px;
+}
+.main .main-login .main-login__box input[type="submit"] {
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 400px;
+    height: 50px;
+    background-color: #3fc754;
+    color: #fff;
+    border-style: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.main .sign_box {
+    display: flex;
+}
+.main .sign_box div {
+    margin: 0 10px;
+}
+.main .sign_box div a {
+    text-decoration: none;
+    color: rgb(163, 163, 163);
+}
+.red {
+    color: red;
+}

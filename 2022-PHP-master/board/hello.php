@@ -1,0 +1,1 @@
+<div>안녕하세요<?php print $_GET["name"]; ?></div>

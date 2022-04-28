@@ -1,0 +1,90 @@
+https://fifo22.tistory.com/34
+
+아파치 다운
+apache - apache lounge 사이트
+
+-php다운
+https://windows.php.net/download#php-8.1
+php download x64 Thread safe
+
+아파치 폴더 c: 붙여넣기
+C:\Apache24\conf 위치에 httpd 파일 메모장으로 열기
+
+- Ctrl + f 로 단어 찾기
+
+- 드라이브 같은지 확인
+Define SRVROOT "c:/Apache24"
+ServerRoot "${SRVROOT}"
+
+- ServerName 찾아서 로컬호스트 추가
+#ServerName www.example.com:80
+ServerName localhost:80 
+
+C:\Apache24\bin 안에
+ApacheMonitor 관리자 권한으로 실행
+서버시작
+
+-------- 위에 방법으로 하면 필요 없음---------
+- cmd창 관리자 권한 열기
+cd.. 반복
+root로 접근
+cd Apache24/bin
+로 접근 한 후 
+httpd -k install
+httpd -k start
+--------------------------------------------
+인터넷 창에 localhost를 쳤을때
+it works! 라고 뜨면 성공
+
+이미 작동한다 했을땐 
+httpd -k stop으로 정지 후 다시실행
+
+C:\Apache24\htdocs
+index 파일 수정시 로컬호스트에서 수정확인 가능
+확인 안될 땐 서버 껐다 키기
+
+------------------------------------------------------------------------------------------------
+========= PHP 설치 =========
+-php 압축 푼 후 폴더명 php8로 바꾸고 c: 에 붙여넣기
+php.ini-production 파일 복사후
+php.ini로 바꾼 후 편집열기
+
+-세미콜론 풀어주기
+;extension_dir = "./"
+extension_dir = "c:/php8/ext" 로 수정
+
+-C:\Apache24\conf
+httpd 메모장 열기
+
+-index.html 찾은 후 index.php 넣기
+<IfModule dir_module>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+C:\Apache24\bin
+ApacheMonitor 실행
+서버 중지 하고 수정하기
+
+C:\Apache24\conf
+httpd 메모장 맨 밑 부분에
+
+PHPIniDir "C:/php8"
+LoadModule php_module "C:/php8/php8apache2_4.dll"
+AddHandler application/x-httpd-php .php
+AddType application/x-httpd-php .php .html
+
+추가하기
+
+===== https://programming-workspace.tistory.com/19 ======
+
+C:\php8에서 php8.ini 편집
+
+;(세미콜론)들 빼주기
+extension=curl
+extension=gettext
+extension=mbstring
+extension=mysqli
+
+date.timezone = Asia/Seoul
+
+error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_USER_DEPRECATED

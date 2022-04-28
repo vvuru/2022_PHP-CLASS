@@ -1,0 +1,66 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+body {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f7;
+}
+main {
+    height: 100vh;
+}
+ul {
+    list-style: none;
+}
+main .main_box {
+    margin-top: 50px;
+}
+main .main_box .main_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #3fc848;
+    font-size: 3rem;
+    font-weight: bold;
+}
+main .main_box-sign {
+    box-sizing: border-box;
+    width: 460px;
+}
+main .main_box-sign form div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+main .main_box-sign form div input,
+main .main_box-sign form div select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+}
+main .main_box-sign form .birth_box {
+    display: flex;
+    flex-direction: row;
+}
+main .main_box-sign form .birth_box input {
+    width: 33%;
+}
+main .main_box-sign form .birth_box select {
+    width: 34%;
+}
+main .main_box-sign form input[type="submit"] {
+    background-color: #3fc848;
+    color: #fff;
+    border-style: none;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+.red {
+    color: red;
+}

@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html,
+body {
+    height: 100%;
+}
+
+#container {
+    display: grid;
+    grid-template-rows: 50px, 1fr;
+    min-height: 100vh;
+}
+#container > header {
+    background-color: #55608f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        90deg,
+        rgba(231, 0, 255, 1) 0%,
+        rgba(123, 115, 255, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+    );
+}
+
+.table-box {
+    transition: all 0.5s ease-in-out;
+}
+main .table-box h1 {
+    color: #fff;
+}
+
+table {
+    width: 800px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+th {
+    text-align: center;
+}
+
+.title-link {
+    text-align: left;
+}
+
+thead th {
+    background-color: #55608f;
+}
+
+tbody a {
+    text-decoration: none;
+    color: #fff;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+tbody tr:hover td,
+tbody tr:hover td a {
+    color: rgba(231, 0, 255, 1);
+}
+
+tbody td:hover:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.2);
+}
+main .page-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .page-box a {
+    text-decoration: none;
+}
+.btn {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 0.6em;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    margin: 5px;
+    padding: 0.3rem 0.5rem;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+.btn:hover,
+.btn:focus {
+    color: #fff;
+    outline: 0;
+}
+.first {
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.first:hover {
+    box-shadow: 0 0 40px 40px #fff inset;
+    color: #000;
+}
