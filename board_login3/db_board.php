@@ -7,11 +7,7 @@
         $title=$param["title"];
         $ctnt=$param["ctnt"];
 
-        $sql=
-        "INSERT INTO t_board
-        (title,ctnt,i_user)
-        VALUES
-        ('$title','$ctnt','$i_user')";
+        $sql="INSERT INTO t_board3 (title,ctnt,i_user) VALUES ('$title','$ctnt','$i_user')";
 
         $conn=get_conn();
         $result=mysqli_query($conn,$sql);
@@ -22,8 +18,8 @@
     function sel_paging_count(&$param)
     {
         $row_count=$param["row_count"];
-        $sql="SELECT CEIL(COUNT(i_board)/$row_count) AS cnt
-        FROM t_board";
+        $sql="SELECT CEIL(COUNT(i_board)/$row_count) AS cnt FROM t_board3";
+
         $conn=get_conn();
         $result=mysqli_query($conn,$sql);
         mysqli_close($conn);
@@ -34,58 +30,57 @@
     function sel_board_list(&$param)
     {
         $start_idx=$param["start_idx"];
-        $row_count=$param["row_count"];
-        $sql="SELECT A.i_board,A.title,A.created_at,B.nm
-        FROM t_board A
-        INNER JOIN t_user B
-        ON A.i_user=B.i_user
-        ORDER BY A.i_board DESC
-        LIMIT $start_idx,$row_count";
+        $row_count=$param["row_count"];  
+
+        $sql="SELECT A.i_board,A.title,A.created_at,B.nm FROM t_board3 A INNER JOIN t_user3 B
+        ON A.i_user=B.i_user ORDER BY A.i_board DESC LIMIT $start_idx,$row_count";
+
         $conn=get_conn();
         $result=mysqli_query($conn,$sql);
         mysqli_close($conn);
         return $result;
     }
 
-    function sel_board(&$param) {
-        $i_board = $param["i_board"];
-        $sql = "SELECT A.title, A.ctnt, A.created_at
-                     , B.i_user, B.nm
-                  FROM t_board A
-                 INNER JOIN t_user B
-                    ON A.i_user = B.i_user
-                 WHERE A.i_board = $i_board";
+    function sel_board(&$param)
+    {
+        $i_board=$param["i_board"];
+        $sql="SELECT A.title, A.ctnt, A.created_at, B.i_user, B.nm FROM t_board3 A INNER JOIN t_user3 B
+        ON A.i_user=B.i_user WHERE A.i_board=$i_board";
+        
         $conn = get_conn();
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);        
         return mysqli_fetch_assoc($result);
     }
-    
-    //recent
+
     function sel_next_board(&$param)
     {
-        $i_board = $param["i_board"];
-        $sql = "SELECT i_board FROM t_board WHERE i_board>$i_board ORDER BY i_board LIMIT 1";
+        $i_board=$param["i_board"];
+
+        $sql="SELECT i_board FROM t_board3 WHERE i_board>$i_board ORDER BY i_board LIMIT 1";
+
         $conn = get_conn();
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);  
         $row=mysqli_fetch_assoc($result);
-        if($row)     
+        if($row)
         {
             return $row["i_board"];
         }
         return 0;
     }
-    //previous
+
     function sel_prev_board(&$param)
     {
-        $i_board = $param["i_board"];
-        $sql = "SELECT i_board FROM t_board WHERE i_board<$i_board ORDER BY i_board DESC LIMIT 1";
+        $i_board=$param["i_board"];
+
+        $sql="SELECT i_board FROM t_board3 WHERE i_board<$i_board ORDER BY i_board DESC LIMIT 1";
+
         $conn = get_conn();
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);  
-        $row=mysqli_fetch_assoc($result);    
-        if($row)     
+        $row=mysqli_fetch_assoc($result);
+        if($row)
         {
             return $row["i_board"];
         }
@@ -99,22 +94,26 @@
         $ctnt=$param["ctnt"];
         $i_user=$param["i_user"];
 
-        $sql="UPDATE t_board SET title='$title',ctnt='$ctnt',updated_at=now()
+        $sql="UPDATE t_board3 SET title='$title',ctnt='$ctnt',updated_at=now()
         WHERE i_board=$i_board AND i_user=$i_user";
+
         $conn = get_conn();
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
         return $result;
-    }
 
+    }
+    
     function del_board(&$param)
     {
         $i_board=$param["i_board"];
         $i_user=$param["i_user"];
 
-        $sql="DELETE FROM t_board WHERE i_board=$i_board AND i_user=$i_user";
+        $sql="DELETE FROM t_board3 WHERE i_board=$i_board AND i_user=$i_user";
+
         $conn = get_conn();
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
         return $result;
+
     }
