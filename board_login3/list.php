@@ -40,6 +40,7 @@
                 <?php if(isset($_SESSION["login_user"])) { ?>
                     <a href="write.php">Write</a>
                     <a href="logout.php">Logout</a>
+                    <a href="profile.php">Profile</a>
                 <?php } else { ?>
                     <a href="login.php">Login</a>
                 <?php } ?>
