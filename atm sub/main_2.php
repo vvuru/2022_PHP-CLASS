@@ -10,13 +10,14 @@
         .tab_menu .list{overflow-y:auto; overflow-x:hidden;}
         .tab_menu .list li{float:left; margin-right:14px;}
         .tab_menu .list .btn{font-size:50px;}
-        .tab_menu .list .cont{display:none; position:absolute; background:#eee; color:#fff; }
+        .tab_menu .list .cont{display:none; position:fixed; background:#eee; color:#666666; }
         .tab_menu .list li.is_on .btn{font-weight:bold; background-color:#0aaaaa; color:#fff;}
         .tab_menu .list li.is_on .cont{display:block;}
 
         ul{list-style:none;}
 
-        html,body{ height: 100vh; width: 100vw; box-sizing: border-box;}
+        body{margin:0;}
+        table{width:100vw; height:100vh;}
     </style>
 </head>
 <body>

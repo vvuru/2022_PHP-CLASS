@@ -25,7 +25,17 @@ if(isset($_SESSION["login_user"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9abf43b298.js" crossorigin="anonymous"></script>
     <title>ATM 익명질문</title>
+    <style>
+        .tab_menu{position:relative;}
+        .tab_menu .list{overflow:auto;}
+        .tab_menu .list li{float:left; margin-right:14px;}
+        .tab_menu .list .btn{font-size:13px;}
+        .tab_menu .list .cont{display:none; position:absolute; background:#eee; color:#fff; text-align:center; width:250px; height:100px; line-height:100px;}
+        .tab_menu .list li.is_on .btn{font-weight:bold; background-color:#0aaaaa; color:#fff;}
+        .tab_menu .list li.is_on .cont{display:block;}
+    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
