@@ -3,20 +3,24 @@
 
     session_start();
     $login_user = $_SESSION["login_user"];
+    $i_user = $login_user["i_user"];
 
-    $list = sel_board_list($param);
+    $param = [
+      "i_user" => $i_user
+    ];
+
+    // $list1 = sel_board_list1($param);
+    // $list2 = sel_board_list2($param);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/main_1.css">
   <title>main1</title>
 </head>
-
 <body>
   <div class="container">
     <header>
@@ -50,10 +54,13 @@
           </div>
           <div class="a_main_write_2">
             <form action="write_proc.php" method="post">
-              <div class="a_main_write_2_txt"><textarea name="question" placeholder="질문을 입력해주세요."></textarea></div>
+              <div class="error" id="question"></div>
+              <div class="a_main_write_2_txt">
+                <textarea name="question" id="question" placeholder="질문을 입력해주세요."></textarea>
+              </div>
               <div class="a_main_write_2_button">
-                  <input type="submit" value="질문하기">
-                  <input type="reset" value="초기화">
+                <input type="submit" name="add" value="질문하기">
+                <input type="reset" value="초기화">
               </div>
             </form>
           </div>
@@ -67,25 +74,30 @@
             <label class="tab_item" for="programming">새질문</label>
 
             <div class="tab_content" id="all_content">
-              <div class="tab_content_asked">
-                <?php foreach($list as $item) { ?>
-                <div class="tab_content_question">
+              <div class="tab_content_answered">
+                <?php foreach($list1 as $item) { ?>
+                  <div>
                   <a href="detail.php">
                   <img src="img/profile/atm_basic.png" class="main_list_img">
                   <?=$item["question"]?>
                   </a>
-                </div>
-                <div>
+                  </div>
                   <div><?=$item["profile_img"]?></div>
                   <div><?=$item["nm"]?></div>
                   <div><?=$item["ans_at"]?></div>
                   <div><?=$item["answer"]?></div>
                   <?php } ?>
-                </div>
               </div>
             </div> <!--tab_content-->
             <div class="tab_content" id="programming_content">
-              우원님 코드 주시면 붙이기
+              <?php foreach($list2 as $item) { ?>
+                <div>
+                  <a href="detail.php">
+                  <img src="img/profile/atm_basic.png" class="main_list_img">
+                  <?=$item["question"]?>
+                  </a>
+                </div>
+              <?php } ?>
             </div>
           </div> <!--tabs-->
         </div> <!--main_list-->
@@ -95,7 +107,11 @@
       <div class="a_footer">
         <div class="a_footer_answer"><a href="main_1.php"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
         <div class="a_footer_profile"><a href="myprofile.php"><img src="img/profile.png" class="a_footer_profile_img"></a></div>
-        <div class="a_footer_notice"><a href="new_noti.php"><img src="img/notice.png" class="a_footer_notice_img"></a></div>
+        <div class="a_footer_notice"><a href="new_noti.php"><img src="img/notice.png" class="a_footer_notice_img"></a>
+          <span class="circle">
+            <span class="visually-hidden">New alerts</span>
+          </span>
+        </div>
         <?php if(!isset($_SESSION["login_user"])) { ?>
         <div class="a_footer_login">로그인 후 사용 가능합니다.</div>
         <?php } ?>

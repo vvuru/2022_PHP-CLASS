@@ -1,0 +1,29 @@
+1. login_proc.php 수정
+
+로그인 성공시 헤더값수정
+        header("Location: main_1.php?i_user=$i_user");
+
+
+
+2. main_1.php? 수정
+
+- 주소값 본인 i_user값 뜨게 http://localhost/atm/main_1.php?i_user=1
+
+- 화면에 본인 i_user값 뜨게 localhost/atm/main_1.php?i_user=1
+
+- 내 질문함 본인 i_user값 뜨게 http://localhost/atm/main_1.php?i_user=1
+
+- 프로필설정 본인 i_user값 뜨게 http://localhost/atm/myprofile.php?i_user=1
+
+☆☆☆☆☆실패ㅠㅠㅠㅠㅠ☆☆☆☆☆ logout 상태라도 main_1.php 볼수있게 수정(detail.php if문 참고)
+
+☆☆☆☆☆css좀 도와주세여.. 글마다 칸칸 간격두기ㅠㅠㅠㅠㅠ 마진보더패딩ㅂㄷㅂㄷ..☆☆☆☆☆
+
+
+3. detail.php 수정
+
+- 주소값 i_board값 연결
+
+- 수정하기 i_board값 연결
+
+- 삭제하기 기능o

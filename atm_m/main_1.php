@@ -78,10 +78,13 @@
           </div>
           <div class="a_main_write_2">
             <form action="write_proc.php" method="post">
-              <div class="a_main_write_2_txt"><textarea name="question" placeholder="질문을 입력해주세요."></textarea></div>
+              <div class="error" id="question"></div>
+              <div class="a_main_write_2_txt">
+                <textarea name="question" id="question" placeholder="질문을 입력해주세요."></textarea>
+              </div>
               <div class="a_main_write_2_button">
-                  <input type="submit" value="질문하기">
-                  <input type="reset" value="초기화">
+                <input type="submit" name="add" value="질문하기">
+                <input type="reset" value="초기화">
               </div>
             </form>
           </div>
@@ -143,7 +146,11 @@
       <div class="a_footer">
         <div class="a_footer_answer"><a href="main_1.php"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
         <div class="a_footer_profile"><a href="myprofile.php"><img src="img/profile.png" class="a_footer_profile_img"></a></div>
-        <div class="a_footer_notice"><a href="new_noti.php"><img src="img/notice.png" class="a_footer_notice_img"></a></div>
+        <div class="a_footer_notice"><a href="new_noti.php"><img src="img/notice.png" class="a_footer_notice_img"></a>
+          <span class="circle">
+            <span class="visually-hidden">New alerts</span>
+          </span>
+        </div>
         <?php if(!isset($_SESSION["login_user"])) { ?>
         <div class="a_footer_login">로그인 후 사용 가능합니다.</div>
         <?php } ?>

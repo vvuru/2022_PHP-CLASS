@@ -1,0 +1,75 @@
+
+.Profile {
+color: #fff;
+background-color: #ffffff;
+line-height: 50px;
+text-align: center;
+}
+.Profile__img {
+
+}
+.Profile__bt {
+
+}
+.line__pi {
+margin: 8px 0px;
+background-color: #0aaaaa;
+text-align: center;
+line-height: 50px;
+font-size: 17px;
+font-weight: bold;
+color: #fff;
+}
+.tc__un {
+margin: 10%;
+font-size: 17px;
+font-weight: bold;
+color: #808080;
+}
+.pr__un {
+margin: 3%;
+font-size: 17px;
+font-weight: bold;
+color: #666666;
+}
+.tc__ch {
+margin: 10%;
+font-size: 17px;
+font-weight: bold;
+color: #0aaaaa;
+}
+.pr__ch {
+margin: 3%;
+}
+.pr__ch input {
+width: 500px;
+height: 32px;
+font-size: 17px;
+border: 0;
+outline: none;
+background-color: #fff;
+}
+.pr__bt {
+background-image: url(img/go.png);
+margin-left: auto;
+}    
+.pr__bt input {
+width: 20px;
+height: 20px;
+}
+.save__bt {
+margin: 30px;
+text-align: center;
+}
+.save__bt input{
+color: #fff;
+background-color: #0aaaaa;
+font-size: 15px;
+font-weight: bold;
+padding: 10px;
+margin: 5px;
+width: 200px;
+height: 35px;
+border: 0px;
+border-radius: 10px;
+}

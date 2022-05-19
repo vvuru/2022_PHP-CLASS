@@ -5,6 +5,40 @@ main 2인 윤서님꺼 / 각자하기꺼 바쁨 합치기?
 +n시간전(que_at,ans_at,ans_mod_at)
 +로그인하면 로그인한 사람 피드 주소가 떠야한다 ex) atm/main_1.php?i_user=$i_user / http://asktm.kr/$i_user
 
+a라는 사람이 로그인을 하면 자기 피드(main.php?a의 i_user)로 이동하고 a에게 남겨진 질문과 a가 답변한 질문만 볼 수 있다.(답변하기 싫은 질문삭제, 답변삭제,답변수정 가능)
+
+로그인을 하지 않을 경우엔 특정인의 피드에 들어가 질문을 남길 수 있고 그 사람이 답변한 질문을 볼 수 있다.(로그인을 하지 않으면 질문삭제, 답변삭제, 답변수정이 불가능)
+
+a라는 사람이 로그인을 하여 b의 피드로 이동하여 b에게 남겨진 질문과 b가 답변한 질문을 볼 수 있다. a라는 사람이 b의 피드에서 질문을 남길때는 익명으로 질문이 등록된다. 
+
++프로필
+
+
+<22/05/19>
+?i_board=<?=$item2["i_board"]?>
+
+
+
+[화면 좌측상단 프사,이름,인트로]
+<?php
+              $session_img=$_SESSION["login_user"]["profile_img"];
+              $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
+            ?>
+            <img src="img/profile/<?=$profile_img?>" class="profile">
+            <div class="profile_nm"><?=$login_user["nm"]?></div>
+            <div class="profile_intro"><?=$login_user["intro"]?></div>
+
+
+
+
+
+
+
+
+
+
+<22/05/18>
+
 1. login_proc.php
 ln32 "비밀번호 일치하지 않습니다" 추가
 
