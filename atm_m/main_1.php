@@ -36,7 +36,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main_1.css">
-  <title> <?=$login_user["nm"]?> - ATM 자유로운 질문답변!</title>
+  <title> <?=$login_user["i_user"]?> - ATM 자유로운 질문답변!</title>
 </head>
 
 <body>
@@ -45,7 +45,13 @@
       <div class="a_header">
         <div class="a_header_1">
           <div class="a_header_profile">
-            <img src="img/profile/atm_basic.png" class="profile">
+            <?php
+              $session_img=$_SESSION["login_user"]["profile_img"];
+              $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
+            ?>
+            <img src="img/profile/<?=$profile_img?>" class="profile">
+            <div class="profile_nm"><?=$login_user["nm"]?></div>
+            <div class="profile_intro"><?=$login_user["intro"]?></div>
           </div>
           <nav class="a_header_menu">
           <?php if(isset($_SESSION["login_user"])) { ?>
@@ -62,7 +68,7 @@
       <div class="a_main">
         <div class="a_main_write">
           <div class="a_main_write_1">
-            <span class="a_main_write_1_url">http://asktm.kr/<?=$login_user["i_user"]?></span>
+            <span class="a_main_write_1_url">localhost/atm_m/main_1.php?i_user=<?= isset($login_user["i_user"]) ? $login_user["i_user"] : "" ?></span>
             <span class="abc">
               <a href="#"><img src="img/fb_share.png" class="shareimg"></a>
               <a href="#"><img src="img/tw_share.png" class="shareimg"></a>

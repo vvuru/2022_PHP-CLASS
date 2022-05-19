@@ -18,7 +18,7 @@ function sel_user(&$param)
 {
     $email=$param["email"];
 
-    $sql="SELECT i_user,email,upw,nm,profile_img FROM t_user WHERE email='$email'";
+    $sql="SELECT i_user,email,upw,nm,profile_img,intro FROM t_user WHERE email='$email'";
     $conn=get_conn();
     $result=mysqli_query($conn,$sql);
     mysqli_close($conn);

@@ -5,6 +5,7 @@
     //변수의 값을 출력.
     $email = $_POST["email"];
     $upw = $_POST["upw"];
+    $i_user=$_GET["i_user"];
 
     // echo "email : ", $email, "<br>";
     // echo "upw : ", $upw, "<br>";
@@ -27,7 +28,7 @@
 
     if($upw === $result["upw"]) { //로그인 성공!!       
         $_SESSION["login_user"] = $result;
-        header("Location: main_1.php");
+        header("Location: main_1.php?i_user=$i_user");
     } else {
         echo "비밀번호가 일치하지 않습니다";
         // header("Location: login.php");
