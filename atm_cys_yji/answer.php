@@ -1,34 +1,33 @@
 <?php
-        include_once "db/db_board.php";
-        session_start();
-        $login_user=$_SESSION["login_user"];
-        $i_user=$login_user["i_user"];
+   include_once "db/db_board.php";
+//    session_start();
+//    $login_user=$_SESSION["login_user"];
+//    $i_user=$login_user["i_user"];
 
-        $i_board=$_GET["i_board"];
-        
-        $question=$_POST["question"];
-        $que_at=$_POST["que_at"];
-        $profile_img=$_POST["profile_img"];
-        $nm=$_POST["nm"];
-        $ans_at=$_POST["ans_at"];
-        $created_at=$_POST["created_at"];
-        $answer=$_POST["answer"];
-        
-        $param=
-        [
-            "i_user"=>$i_user,
-            "question"=>$question,
-            "que_at"=>$que_at,
-            "profile_img"=>$profile_img,
-            "nm"=>$nm,
-            "ans_at"=>$ans_at,
-            "created_at"=>$created_at,
-            "answer"=>$answer,
-            "i_board"=>$i_board
-        ];
+   $i_board=$_GET["i_board"];
+   
+//    $question=$_POST["question"];
+//    $que_at=$_POST["que_at"];
+//    $profile_img=$_POST["profile_img"];
+//    $nm=$_POST["nm"];
+//    $ans_at=$_POST["ans_at"];
+//    $created_at=$_POST["created_at"];
+//    $answer=$_POST["answer"];
+   
+   $param=
+   [
+    //    "i_user"=>$i_user,
+    //    "question"=>$question,
+    //    "que_at"=>$que_at,
+    //    "profile_img"=>$profile_img,
+    //    "nm"=>$nm,
+    //    "ans_at"=>$ans_at,
+    //    "created_at"=>$created_at,
+    //    "answer"=>$answer,
+       "i_board"=>$i_board
+   ];
 
-        $item=sel_board($param);
-
+   $item=sel_question($param);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,18 +103,19 @@
     </div>
     <form action="answer_proc.php" method="post">
         <div class="line">
-        <span class="Profile__img"><img src="img/ATM_basic.png"></span>
+        <span class="Profile__img"><img src="img/profile/atm_basic.png"></span>
             <!-- 익명일 시 기본프사, 로그인 후 프로필 공개 질문시 해당 회원 프사 띄워야하나 보류기능이므로 기본프사 이미지 삽입 -->
-            <div>질문내용: <?=$item["question"]?> </div>
+            <a>질문내용: <?=$item["question"]?></a>
             <!-- db t_board 테이블의 해당 row question 컬럼 데이터 가져오기 -->
-            <div>질문 작성시간: <?=$item["que_at"]?></div>
+            <a>질문 작성시간: <?=$item["que_at"]?></a>
             <!-- db t_board 테이블의 해당 row que_at 컬럼 SNS 방식?으로 띄우기 -->
             <!-- css 상하 가운데정렬하고 좌우 간격줘서 좌측정렬 -->
             <!-- 이 부분 detail.php와 코드 동일함 -->
         </div>
         <div>
-            <a class="ta_an"><textarea name="" placeholder="성희롱 및 욕설은 처벌대상입니다. 최대 1000자까지 작성 가능합니다."></textarea></a>
+            <a class="ta_an"><textarea name="answer" placeholder="성희롱 및 욕설은 처벌대상입니다. 최대 1000자까지 작성 가능합니다."></textarea></a>
             <!-- css textarea 좌우 간격 띄우기 -->
+            <input type="hidden" name="i_board" value="<?=$i_board?>" readonly>
         </div>
         <div class="bt">
             <span class="bt__an"><input type="submit" value="답변하기"></span>

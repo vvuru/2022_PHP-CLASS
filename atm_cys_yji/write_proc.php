@@ -16,6 +16,6 @@ $param = [
 
 $result = ins_board($param); // 배열로 묶어서 보내줌. 결과는 1넘어옴(true)
 if($result) { // 1 넘어왔으니(true) 주소값이동
-    header("Location: main_2.php?i_user=$i_user");
+    Header("Location: main_2.php?=$i_user");
 }
 //t_board에 insert 완료 후 main_1.php로 이동.
