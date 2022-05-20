@@ -4,21 +4,20 @@
 
 include_once "db/db_board.php";
 session_start();
-
-$question=$_POST["question"];
-$answer=$_POST["answer"];
-
 $login_user=$_SESSION["login_user"];
 $i_user=$login_user["i_user"];
+
+$i_board=$_POST["i_board"];
+$answer=$_POST["answer"];
 
 $param=
 [
     "i_user"=>$i_user,
-    "question"=>$question,
+    "i_board"=>$i_board,
     "answer"=>$answer,
 ];
 
-$result=ins_board($param);
+$result=upd_board($param);
 if($result)
 {
     header("location:main_2.php?i_user=$i_user");

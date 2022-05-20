@@ -39,13 +39,14 @@
     <header>
       <div class="a_header">
         <div class="a_header_1">
-          <div class="a_header_profile">   
+          <div class="a_header_profile">
             <?php
-              $session_img=$_SESSION["login_user"]["profile_img"];
-              $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
-            ?>
-            <img src="img/profile/<?=$profile_img?>" class="profile">
-            <div class="profile_nm"><?=isset($_SESSION["login_user"]) ? $login_user["nm"] : "익명"?></div>
+                
+                $session_img=$_SESSION["login_user"]["profile_img"];
+                $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
+                          ?>
+              <img src="img/profile/<?=$profile_img?>" class="profile">
+              <div class="profile_nm"><?=isset($_SESSION["login_user"]) ? $login_user["nm"] : "익명"?></div>
           </div>
           <nav class="a_header_menu">
           <?php if(isset($_SESSION["login_user"])) { ?>
@@ -90,33 +91,34 @@
             <label class="tab_item" for="programming">새질문</label>
 
             <div class="tab_content" id="all_content">
-              <div class="tab_content_answered">
                 <?php foreach($list1 as $item) { ?>
-                  <div>
                   <a href="detail.php?i_board=<?=$item["i_board"]?>"> <!-- 유레카!!!!! item에 담긴 i_board-->
-                  <img src="img/profile/atm_basic.png" class="main_list_img">
-                  <?=$item["question"]?>
+                  <div class="tab_content_set">
+                    <div>
+                    <img src="img/profile/atm_basic.png" class="main_list_img">
+                    <?=$item["question"]?>
+                    </div>
+                    <span class="tab_content_each"><img class="tab_content_each_profile" src="img/profile/<?=$i_user?>/<?=$item['profile_img']?>"></span>
+                    <span class="tab_content_each"><?=$item["nm"]?></span>
+                    <span class="tab_content_each"><a href="del.php?i_board=<?=$item["i_board"]?>"><img src="img/del.png" class="tab_content_each_del_img"></a></span>
+                    <div class="tab_content_each"><?=$item["ans_at"]?></div>
+                    <div class="tab_content_each"><?=$item["answer"]?></div>
+                  </div> <!-- tab_content_set -->
                   </a>
-                  </div>
-                  <img src="img/profile/<?=$profile_img?>" class="profile">
-                  <div><?=$item["nm"]?></div>
-                  <div><?=$item["ans_at"]?></div>
-                  <div><?=$item["answer"]?></div>
-                  <?php } ?>
-              </div>
+                <?php } ?>
             </div> <!--tab_content-->
             <div class="tab_content" id="programming_content">
-            <table style="width:98vw; border-collapse:seperate; border-spacing: 0 5px;">
+            <table style="width:100%; border-collapse:seperate; border-spacing: 0 5px;">
                     <?php foreach($list2 as $item2) { ?>
                         <?php if(isset($_SESSION["login_user"]) && $i_user==$login_user["i_user"]) { ?>
-                        <tr onclick="location.href='answer.php?i_board=<?=$item2['i_board']?>'" 
-                        style="background-color:#fff;">
+                        <tr onclick="location.href='answer.php?i_board=<?=$item2['i_board']?>'"
+                        style="background-color:#fff; height:100px;">
                         <?php } ?>
                             <td><img src="img/profile/atm_basic.png" class="main_list_img"></td>
-                            <td style="font-weight:bold; color:#666;"><?=$item2["question"]?></td>
-                            <td><?=$item2["que_at"]?></td>
+                            <td style="font-weight:bold; color:#666; font-size:18px;"><?=$item2["question"]?></td>
+                            <td style="color:#666;"><?=$item2["que_at"]?></td>
                             <td><?php if(isset($_SESSION["login_user"]) && $i_user==$login_user["i_user"]) { ?>
-                                <a href="del.php?i_board=<?=$item2["i_board"]?>"><img src="img/del.png" 
+                                <a href="del.php?i_board=<?=$item2["i_board"]?>"><img src="img/del.png"
                                 style="width:40px; height:40px; float:right; margin-right: 30px;"></a>
                                 <?php } ?>
                             </td>
@@ -130,7 +132,7 @@
     </main>
     <footer>
     <div class="a_footer">
-            <div class="a_footer_answer"><a href="main_2.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
+            <div class="a_footer_answer"><a href="main_1.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
             <div class="a_footer_profile"><a href="myprofile.php?i_user=<?=$i_user?>"><img src="img/profile.png" class="a_footer_profile_img"></a></div>
             <div class="a_footer_notice"><a href="new_noti.php?i_user=<?=$i_user?>"><img src="img/notice.png" class="a_footer_notice_img"></a>
             <?php if($count>0){echo "

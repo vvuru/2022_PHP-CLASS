@@ -72,19 +72,3 @@ function upd_profile(&$param)
      mysqli_close($conn);
      return $result;
 }
-
-// function upd_user(&$param)
-// {
-//     $i_user=$param["i_user"];
-//     $intro=$param["intro"];
-//     $profile_img=$param["profile_img"];
-    
-//     $sql="UPDATE t_user
-//           SET intro='{$intro}' , profile_img='{$profile_img}'
-//           WHERE i_user=$i_user";
-
-//     $conn=get_conn();
-//     $result=mysqli_query($conn,$sql);
-//     mysqli_close($conn);
-//     return $result;
-// }

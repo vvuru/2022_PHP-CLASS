@@ -7,7 +7,7 @@
     }
     $i_board = $_GET["i_board"];
     $param = [
-        "i_board" => $_GET["i_board"]
+        "i_board" => $_GET["i_board"],
     ];
     $item = sel_board($param);
 
@@ -37,11 +37,12 @@
     <!-- css 상하 가운데정렬하고 좌우 간격줘서 좌측정렬 -->
     <div class="line">
         <div>
-            <a><?php
-              $session_img=$_SESSION["login_user"]["profile_img"];
-              $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
-            ?>
-            <img src="img/profile/<?=$profile_img?>" class="profile"></a> <!--답변자 프사-->
+            <a> <?php
+                
+                $session_img=$_SESSION["login_user"]["profile_img"];
+                $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
+                          ?>
+              <img src="img/profile/<?=$profile_img?>" class="profile"></a> <!--답변자 프사-->
             <!-- t_board 테이블과 t_user테이블 i_user 값으로 묶어줘서 t_user 테이블의 해당 row profile_img 컬럼 값 가져오기 -->
             <!-- css 간격줘서 좌측에 -->
             <a><?=$item["nm"]?></a> <!--답변자 닉네임-->
@@ -63,7 +64,8 @@
             <!-- del.php 작동전 js로 삭제할건지? 팝업창. 확인 후 바로 삭제되도록. -->
                 <?php } ?>
 
-            <a class="bt__b"><button id="backBt" onclick="history.back()">돌아가기</button></a>
+            <a class="bt__b" href="main_2.php?i_user=<?=$item["i_user"]?>"><button id="backBt">돌아가기</button></a>
+            <!-- <a class="bt__b"><button id="backBt" onclick="history.back()">돌아가기</button></a> -->
             <!-- 직전 페이지로 이동 -->
     </div>
     <!-- css 모바일 화면에서 버튼 밀림 -->

@@ -2,8 +2,11 @@
     include_once "db/db_board.php";
 
     session_start();
+
+    session_start();
     $login_user = $_SESSION["login_user"];
-    // $i_user = $login_user["i_user"]; //     $i_user = $item["i_user"]; nono 돌겠네
+    $i_user = $login_user["i_user"];
+    // $i_user = $_GET["i_user"]; nono 돌겠네
 
     // if(isset($_SESSION["login_user"])) {
     //   $login_user = $_SESSION["login_user"];
@@ -13,14 +16,18 @@
     // }
 
     $i_board = $_GET["i_board"];
-    $i_user=$_GET["i_user"];
+
+
+    
 
     $param = [
       "i_user" => $i_user,
       "i_board" => $i_board
     ];
 
+
     $list1 = sel_board_list1($param);
+
     $list2 = sel_board_list2($param);
 ?>
 
@@ -31,7 +38,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main_1.css">
-  <title>ATM 자유로운 질문답변! - <?=isset($_SESSION["login_user"]) ? $login_user["i_user"] : "익명"?></title>
+  <title>main1</title>
 </head>
 
 <body>
@@ -39,13 +46,8 @@
     <header>
       <div class="a_header">
         <div class="a_header_1">
-          <div class="a_header_profile">   
-            <?php
-              $session_img=$_SESSION["login_user"]["profile_img"];
-              $profile_img= $session_img==null ? "atm_basic.png" : $_SESSION["login_user"]["i_user"]."/".$session_img;
-            ?>
-            <img src="img/profile/<?=$profile_img?>" class="profile">
-            <div class="profile_nm"><?=isset($_SESSION["login_user"]) ? $login_user["nm"] : "익명"?></div>
+          <div class="a_header_profile">
+            <img src="img/profile/atm_basic.png" class="profile">
           </div>
           <nav class="a_header_menu">
           <?php if(isset($_SESSION["login_user"])) { ?>
@@ -62,7 +64,7 @@
       <div class="a_main">
         <div class="a_main_write">
           <div class="a_main_write_1">
-            <span class="a_main_write_1_url">localhost/atm/main.php?i_user=<?=$i_user?></span>
+            <span class="a_main_write_1_url">localhost/atm/main_1.php?i_user=<?=$i_user?></span>
             <span class="abc">
               <a href="#"><img src="img/fb_share.png" class="shareimg"></a>
               <a href="#"><img src="img/tw_share.png" class="shareimg"></a>
@@ -72,7 +74,6 @@
           </div>
           <div class="a_main_write_2">
             <form action="write_proc.php" method="post">
-              <input type="hidden" name="i_user" value="<?=$i_user?>" readonly >
               <div class="a_main_write_2_txt"><textarea name="question" placeholder="질문을 입력해주세요."></textarea></div>
               <div class="a_main_write_2_button">
                   <input type="submit" value="질문하기">
@@ -90,39 +91,31 @@
             <label class="tab_item" for="programming">새질문</label>
 
             <div class="tab_content" id="all_content">
-              <div class="tab_content_answered">
                 <?php foreach($list1 as $item) { ?>
-                  <div>
                   <a href="detail.php?i_board=<?=$item["i_board"]?>"> <!-- 유레카!!!!! item에 담긴 i_board-->
+                  <div class="tab_content_set">
+                    <div>
+                    <img src="img/profile/atm_basic.png" class="main_list_img">
+                    <?=$item["question"]?>
+                    </div>
+                    <div class="tab_content_each"><?=$item["profile_img"]?></div>
+                    <img src="img/profile/<?=$i_user?>/<?=$item['profile_img']?>" id="preview">
+                    <div class="tab_content_each"><?=$item["nm"]?></div>
+                    <div class="tab_content_each"><?=$item["ans_at"]?></div>
+                    <div class="tab_content_each"><?=$item["answer"]?></div>
+                  </div> <!-- tab_content_set -->
+                  </a>
+                <?php } ?>
+            </div> <!--tab_content-->
+            <div class="tab_content" id="programming_content">
+              <?php foreach($list2 as $item) { ?>
+                <div>
+                  <a href="detail.php">
                   <img src="img/profile/atm_basic.png" class="main_list_img">
                   <?=$item["question"]?>
                   </a>
-                  </div>
-                  <img src="img/profile/<?=$profile_img?>" class="profile">
-                  <div><?=$item["nm"]?></div>
-                  <div><?=$item["ans_at"]?></div>
-                  <div><?=$item["answer"]?></div>
-                  <?php } ?>
-              </div>
-            </div> <!--tab_content-->
-            <div class="tab_content" id="programming_content">
-            <table style="width:98vw; border-collapse:seperate; border-spacing: 0 5px;">
-                    <?php foreach($list2 as $item2) { ?>
-                        <?php if(isset($_SESSION["login_user"]) && $i_user==$login_user["i_user"]) { ?>
-                        <tr onclick="location.href='answer.php?i_board=<?=$item2['i_board']?>'" 
-                        style="background-color:#fff;">
-                        <?php } ?>
-                            <td><img src="img/profile/atm_basic.png" class="main_list_img"></td>
-                            <td style="font-weight:bold; color:#666;"><?=$item2["question"]?></td>
-                            <td><?=$item2["que_at"]?></td>
-                            <td><?php if(isset($_SESSION["login_user"]) && $i_user==$login_user["i_user"]) { ?>
-                                <a href="del.php?i_board=<?=$item2["i_board"]?>"><img src="img/del.png" 
-                                style="width:40px; height:40px; float:right; margin-right: 30px;"></a>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                        <?php } ?>     
-                </table>   
+                </div>
+              <?php } ?>
             </div>
           </div> <!--tabs-->
         </div> <!--main_list-->
@@ -130,7 +123,7 @@
     </main>
     <footer>
     <div class="a_footer">
-            <div class="a_footer_answer"><a href="main_2.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
+            <div class="a_footer_answer"><a href="main_1.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
             <div class="a_footer_profile"><a href="myprofile.php?i_user=<?=$i_user?>"><img src="img/profile.png" class="a_footer_profile_img"></a></div>
             <div class="a_footer_notice"><a href="new_noti.php?i_user=<?=$i_user?>"><img src="img/notice.png" class="a_footer_notice_img"></a>
             <?php if($count>0){echo "

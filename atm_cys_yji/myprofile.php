@@ -66,16 +66,16 @@
         </div>
         <div class="line">
             <a class="tc__un">주&nbsp;&nbsp;&nbsp;소</a>
-            <a class="pr__un">http://asktm.kr/<?=$item["i_user"]?></a>
+            <a class="pr__un">localhost/atm/main.php?i_user=<?=$item["i_user"]?></a>
         </div>
         <div class="line">   
             <a class="tc__ch">닉네임</a>
-            <a class="pr__ch"><input type="text" value="<?=$item["nm"]?>" placeholder="닉네임을 작성해주세요."></a>
+            <a class="pr__ch"><input type="text" name="nm" value="<?=$item["nm"]?>" placeholder="닉네임을 작성해주세요."></a>
             <!-- css 모바일 크기로 볼 시 줄 밀림, 위치고정 후 줄바뀜시 해당 위치에서 세로길이 늘어나게끔 -->
         </div>
         <div class="line"> 
             <a class="tc__ch">소&nbsp;&nbsp;&nbsp;개</a>
-            <a class="pr__ch"><input type="text" value="<?=$item["intro"]?>" placeholder="소개글을 작성해주세요."></a>
+            <a class="pr__ch"><input type="text" name="intro" value="<?=$item["intro"]?>" placeholder="소개글을 작성해주세요."></a>
         </div>
         <div class="line__pi">개인정보</div>
         <div class="line">  

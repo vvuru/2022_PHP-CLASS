@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
-    <title>ATM 자유로운 질문답변!</title>
+    <title>Document</title>
     <style>
         * {
             box-sizing: border-box;
@@ -97,7 +97,7 @@
         </div>
         <footer>
         <div class="a_footer">
-            <div class="a_footer_answer"><a href="main_2.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
+            <div class="a_footer_answer"><a href="main_1.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
             <div class="a_footer_profile"><a href="myprofile.php?i_user=<?=$i_user?>"><img src="img/profile.png" class="a_footer_profile_img"></a></div>
             <div class="a_footer_notice"><a href="new_noti.php?i_user=<?=$i_user?>"><img src="img/notice.png" class="a_footer_notice_img"></a>
             <?php if($count>0){echo "
