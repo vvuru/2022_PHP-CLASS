@@ -1,4 +1,17 @@
+<?php   
+    include_once "db/db_user.php";
 
+    session_start(); // 세션키고
+    if(isset($_SESSION["login_user"])) { // 로그아웃시 에러x (예외처리) // if문 안 ture false
+        $login_user = $_SESSION["login_user"];
+    }
+    $i_user = $login_user["i_user"];
+
+    $param = [
+        "i_user" => $i_user
+    ];
+    $item = sel_profile($param);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,111 +19,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필설정</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/myprofile.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-    .Title__top--name {
-            font-size: 17px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #0aaaaa;
-            text-align: center;
-            line-height: 50px;
+        .Profile input {
+        display: none;
         }
-    .Profile {
-        color: #fff;
-        background-color: #ffffff;
-        text-align: center;
-        line-height: 50px;
+
+        .Profile img {
+            margin: 20px 0 0 0;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
         }
     </style>
 </head>
-<body class="body">
+<body>
+    <div class="container">
     <div class="Title">
         <div class="Title__top--name">프로필설정</div>
     </div>
-    <form action="myprofile_proc.php" method="post">
-        <div class="Profile">
-            <img src="img/ATM_basic.png">
-            <!--
-                db t_user 해당 로우의 profile_img 컬럼 값 불러오기
-                css 가운데정렬
-            -->
-            <input type="file" name="img" accept="image/*">
-            <!--
-                db t_user 해당 로우의 profile_img 컬럼 값 불러오기(하단 저장하기 버튼 클릭시 입력되어있는 값으로 db 해당 row의 값 수정됨)
-                css 프로필사진 우측 하단에 겹쳐 띄우기, 버튼 스타일 없애기, 선택된 파일 없음 문구 없애기.
-            -->
+    <form action="myprofile_proc.php" method="post" enctype="multipart/form-data">
+        <div class="Profile"> 
+            <label class="input-file-button" for="input-file"><img src="img/profile/<?=$i_user?>/<?=$item['profile_img']?>" id="preview"></label>
+            <input onchange="readURL(this);" type="file" name="img" id="input-file" accept="image/*">
+            <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('preview').src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    document.getElementById('preview').src = "";
+                }
+            }
+            </script>
         </div>
-        <div>
-        <!--css 이메일~소개 같은 클래스-->    
-            <a>이메일 </a>
-            <!--css 이메일, 주소 같은 클래스-->
-            <a>회원이메일</a>
-            <!--
-                db t_user 해당 row의 email 값 불러오기
-                css 
-            -->
+        <div class="line">   
+            <a class="tc__un">이메일</a>
+            <a class="pr__un"><?=$item["email"]?></a>
+            <!--db t_user 해당 row의 email 값 불러오기-->
         </div>
-        <div>
-        <!--css 비밀번호 변경, 회원탈퇴 같은 클래스-->    
-            <a>주소 </a>
-            <!--css 이메일, 주소 같은 클래스-->
-            <a>http://asktm.kr/$i_user</a>
-            <!--
-                $i_user 부분에 db t_user 해당 row의 i_user 값 불러오기
-                css 
-            -->
+        <div class="line">
+            <a class="tc__un">주&nbsp;&nbsp;&nbsp;소</a>
+            <a class="pr__un">http://asktm.kr/<?=$item["i_user"]?></a>
         </div>
-        <div>
-        <!--css 비밀번호 변경, 회원탈퇴 같은 클래스-->    
-            <a>닉네임 </a>
-            <!--css 닉네임, 소개, 비밀번호 변경, 회원탈퇴 같은 클래스-->
-            <input type="text" value="회원 닉네임">
-            <!--
-                디폴트 value값 db t_user 해당 row의 nm 값, 수정가능. 하단 저장버튼 클릭시 입력되어있는 값으로 db 해당 row 값 수정됨.
-                css 텍스트박스 테두리 없애기
-            -->
+        <div class="line">   
+            <a class="tc__ch">닉네임</a>
+            <a class="pr__ch"><input type="text" value="<?=$item["nm"]?>" placeholder="닉네임을 작성해주세요."></a>
+            <!-- css 모바일 크기로 볼 시 줄 밀림, 위치고정 후 줄바뀜시 해당 위치에서 세로길이 늘어나게끔 -->
         </div>
-        <div>
-        <!--css 비밀번호 변경, 회원탈퇴 같은 클래스-->    
-            <a>소개 </a>
-            <!--css 닉네임, 소개, 비밀번호 변경, 회원탈퇴 같은 클래스-->
-            <input type="text" value="회원 소개글">
-            <!--
-                디폴트 value값 db t_user 해당 row의 intro 값, 수정가능. 하단 저장버튼 클릭시 입력되어있는 값으로 db 해당 row 값 수정됨.
-                css 텍스트박스 테두리 없애기
-            -->
+        <div class="line"> 
+            <a class="tc__ch">소&nbsp;&nbsp;&nbsp;개</a>
+            <a class="pr__ch"><input type="text" value="<?=$item["intro"]?>" placeholder="소개글을 작성해주세요."></a>
         </div>
-        <!-- 디폴트값 해당 회원 소개글 뜨도록, null일 시 '소개글을 작성해주세요. 뜨게. 수정가능 -->
-        <div>개인정보</div>
-        <!--css 단독 클래스--> 
-        <div>
-        <!--css 비밀번호 변경, 회원탈퇴 같은 클래스-->    
-            <a>비밀번호 변경</a>
-            <!--css 닉네임, 소개, 비밀번호 변경, 회원탈퇴 같은 클래스-->
-            <input type="button" value=">" onClick="location.href='chg_pw.php'">
-            <!--
-                chg_pw.php페이지(비밀번호변경창)로 이동
-                css
-            -->
+        <div class="line__pi">개인정보</div>
+        <div class="line">  
+            <a class="tc__ch">비밀번호 변경</a>
+            <a><input type="button" class="pr__bt" src="img/go.png" onClick="location.href='chg_pw.php'"></a>
+            <!--css 인풋 타입 이미지로 변경시 myprofile_proc 실행됨, 백그라운드 이미지로 이미지 우측정렬 구현 필요-->
         </div>
-        <div>
-        <!--css 비밀번호 변경, 회원탈퇴 같은 클래스-->    
-            <a>회원탈퇴</a>
-            <!--css 닉네임, 소개, 비밀번호 변경, 회원탈퇴 같은 클래스-->
-            <input type="button" value=">" onClick="location.href='delete_login.php'">
-            <!--
-                delete_login.php페이지(회원탈퇴창)로 이동
-                css
-            -->
+        <div class="line">  
+            <a class="tc__ch">회원탈퇴</a>
+            <a><input type="button" class="pr__bt" src="img/go.png" onClick="location.href='cg_pw.php'"></a>
         </div>
-        <input type="submit" value="저장하기">
-        <!-- 저장하기 버튼 클릭시 myprofile_proc.php 동작하면서 입력되어있는 내용으로 수정됨 -->
+        <div class="save__bt">
+            <input type="submit" value="저장하기">
+        </div> 
+        <!-- css 모바일 크기로 볼 시 버튼 푸터랑 겹침, 띄워주기 -->
     </form>
-    <div>
-        <a href="">내질문함</a>
-        <a href="">프로필설정</a>
-        <a href="">알림</a>
-        <!-- 메인 페이지랑 공유, 후순위로 구현 -->
+    <footer class="a_footer">
+        <div class="a_footer_answer"><a href="main_2.php?i_user=<?=$i_user?>"><img src="img/answer.png" class="a_footer_answer_img"></a></div>
+        <div class="a_footer_profile"><a href="myprofile.php"><img src="img/profile.png" class="a_footer_profile_img"></a></div>
+        <div class="a_footer_notice"><a href="new_noti.php"><img src="img/notice.png" class="a_footer_notice_img"></a></div>
+    </footer>
     </div>
 </body>
 </html>
