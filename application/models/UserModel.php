@@ -15,4 +15,12 @@ class UserModel extends Model {
         $stmt->bindValue(":gender",$param["gender"]);
         $stmt->execute();
     }
+
+    public function selUser(&$param){
+        $sql="SELECT * FROM t_user WHERE uid=:uid";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindValue(":uid",$param["uid"]);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }

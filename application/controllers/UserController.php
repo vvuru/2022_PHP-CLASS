@@ -1,6 +1,9 @@
 <?php
 namespace application\controllers;
+
+//include_once "application/utils/SessionUtils.php";
 use application\models\UserModel;
+//require_once "application/models/UserModel.php";
 
 class UserController extends Controller {
     public function join() {
@@ -27,6 +30,39 @@ class UserController extends Controller {
     }
 
     public function login() {
+        $this->addAttribute(_TITLE, "로그인");
+        $this->addAttribute(_HEADER, $this->getView("template/header.php"));
+        $this->addAttribute(_MAIN, $this->getView("user/login.php"));
+        $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
+        return "template/t1.php";
+    }
 
+    public function loginProc() {
+        $param=[
+            "uid"=> $_POST["uid"],
+            "upw"=> $_POST["upw"]
+        ];
+        
+        $model=new UserModel();
+        $dbUser=$model->selUser($param);
+       
+        if($dbUser === false){
+            //아이디 없음
+            print "아이디 없음<br>";
+            return $this->login();
+        } else if(!password_verify($param["upw"],$dbUser->upw)){
+            //비밀번호 다름
+            print "비밀번호 다름<br>";
+            return $this->login();   
+        }
+        flash(_LOGINUSER,$dbUser);
+
+        return "redirect:/board/list";
+
+    }
+
+    public function logout() {
+        flash(_LOGINUSER);
+        return "redirect:/board/list";
     }
 }

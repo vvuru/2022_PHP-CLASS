@@ -13,6 +13,7 @@
     define("_HEADER", "header");
     define("_MAIN", "main");
     define("_FOOTER", "footer");
+    define("_LOGINUSER","loginuser");
 
     define("_CSS", "css");
     define("_JS", "js");

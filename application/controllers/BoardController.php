@@ -10,8 +10,13 @@ class BoardController extends Controller {
         $this->addAttribute("title", "리스트");
         $this->addAttribute("list", $model->selBoardList());
         $this->addAttribute("js", ["board/list"]);
+        $this->addAttribute("js", ["board/list"]);
 
-        return "board/list.php"; //view 파일명!!
+        $this->addAttribute(_HEADER, $this->getView("template/header.php"));
+        $this->addAttribute(_MAIN, $this->getView("board/list.php"));
+        $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
+        return "template/t1.php";
+        // return "board/list.php"; //view 파일명!!
     }
 
     public function detail() {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include_once "application/views/template/head.php"; ?>
+<?php include_once "application/views/template/head.php";
+ ?>
 <body>
     <h1>리스트</h1>
     <table>
