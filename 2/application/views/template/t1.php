@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once "application/views/template/head.php"; ?>
+
 <body>
     <div class="container">
         <header><?php include_once $this->header;?></header>

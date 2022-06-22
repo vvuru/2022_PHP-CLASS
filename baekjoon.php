@@ -1,3 +1,0 @@
-<?php
-
-fscanf(STDIN)
