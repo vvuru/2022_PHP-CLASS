@@ -14,4 +14,10 @@ class BoardController extends Controller {
         $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
         return "template/t1.php";
     }
+
+    public function detail() {
+        $i_board = $_GET["i_board"];
+        $model = new BoardModel();
+        
+    }
 }
