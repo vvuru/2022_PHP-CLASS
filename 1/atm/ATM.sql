@@ -25,4 +25,5 @@ CREATE TABLE t_board(
    ans_at DATETIME DEFAULT CURRENT_TIMESTAMP,
    ansmod_at DATETIME DEFAULT CURRENT_TIMESTAMP,
    foreign KEY(i_user) REFERENCES t_user(i_user)
-);atm
+);
+
